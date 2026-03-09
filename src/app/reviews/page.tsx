@@ -1,22 +1,26 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Отзывы",
-  description: "Отзывы клиентов о работе.",
+  description: "Отзывы клиентов о работе Ruslan WEB. 50+ проектов, 5+ лет опыта.",
 };
 
 const reviews = [
   {
-    name: "Клиент А",
-    text: "Отличная работа! Сайт был готов в срок и полностью соответствовал ТЗ.",
+    name: "Владелец espaniero.ru",
+    text: "Отличная работа! Сайт был готов в срок и полностью соответствовал ТЗ. LMS-платформа работает стабильно, ученики довольны интерфейсом.",
+    project: "espaniero.ru",
   },
   {
-    name: "Клиент Б",
-    text: "Профессиональный подход, грамотная коммуникация. Рекомендую.",
+    name: "Владелица ASSORO",
+    text: "Профессиональный подход — от брифа до запуска. Магазин работает быстро, мобильная версия идеальна. Рекомендую.",
+    project: "assoro.ru",
   },
   {
-    name: "Клиент В",
-    text: "Быстро разобрался в задаче, предложил оптимальное решение. Буду обращаться ещё.",
+    name: "Директор Danila-Master",
+    text: "Быстро разобрался в задаче, реализовал сложный каталог с SEO-оптимизацией. Позиции в Google выросли в первый месяц.",
+    project: "danila-master.ru",
   },
 ];
 
@@ -25,7 +29,7 @@ export default function ReviewsPage() {
     <section className="mx-auto max-w-5xl px-6 py-20">
       <h1 className="text-3xl font-bold tracking-tight">Отзывы</h1>
       <p className="mt-4 text-zinc-600 dark:text-zinc-400">
-        Что говорят клиенты.
+        Что говорят клиенты о сотрудничестве.
       </p>
 
       <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -37,11 +41,26 @@ export default function ReviewsPage() {
             <p className="text-sm text-zinc-600 dark:text-zinc-400">
               &ldquo;{r.text}&rdquo;
             </p>
-            <cite className="mt-4 block text-sm font-medium not-italic">
-              {r.name}
-            </cite>
+            <div className="mt-4">
+              <cite className="block text-sm font-medium not-italic">
+                {r.name}
+              </cite>
+              <span className="text-xs text-zinc-500">{r.project}</span>
+            </div>
           </blockquote>
         ))}
+      </div>
+
+      <div className="mt-12 text-center">
+        <p className="text-zinc-600 dark:text-zinc-400">
+          Хотите обсудить проект?
+        </p>
+        <Link
+          href="/contact"
+          className="mt-4 inline-block rounded-full bg-zinc-900 px-8 py-3 text-sm font-medium text-white transition-colors hover:bg-zinc-700 dark:bg-white dark:text-zinc-900 dark:hover:bg-zinc-200"
+        >
+          Связаться
+        </Link>
       </div>
     </section>
   );

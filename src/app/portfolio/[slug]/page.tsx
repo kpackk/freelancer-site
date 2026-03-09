@@ -1,39 +1,25 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-
-const projects: Record<string, { title: string; desc: string }> = {
-  "project-1": {
-    title: "Корпоративный сайт",
-    desc: "Разработка корпоративного сайта на Next.js с Tailwind CSS. Адаптивный дизайн, быстрая загрузка, интеграция с headless CMS.",
-  },
-  "project-2": {
-    title: "Telegram-бот для бизнеса",
-    desc: "Бот для автоматической обработки заявок. Node.js, Telegraf, интеграция с Google Sheets и CRM.",
-  },
-  "project-3": {
-    title: "E-commerce платформа",
-    desc: "Интернет-магазин с корзиной, оплатой через Stripe, панелью управления. React, Node.js, PostgreSQL.",
-  },
-};
+import portfolio from "@/../content/data/portfolio.json";
 
 type Props = { params: Promise<{ slug: string }> };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const project = projects[slug];
+  const project = portfolio.find((p) => p.slug === slug);
   return {
     title: project?.title ?? "Проект",
-    description: project?.desc ?? "Детали проекта.",
+    description: project?.description ?? "Детали проекта.",
   };
 }
 
 export function generateStaticParams() {
-  return Object.keys(projects).map((slug) => ({ slug }));
+  return portfolio.map((p) => ({ slug: p.slug }));
 }
 
 export default async function ProjectPage({ params }: Props) {
   const { slug } = await params;
-  const project = projects[slug];
+  const project = portfolio.find((p) => p.slug === slug);
 
   if (!project) {
     return (
@@ -47,16 +33,47 @@ export default async function ProjectPage({ params }: Props) {
   }
 
   return (
-    <section className="mx-auto max-w-3xl px-6 py-20">
+    <article className="mx-auto max-w-3xl px-6 py-20">
       <Link
         href="/portfolio"
         className="text-sm text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-100"
       >
         &larr; Портфолио
       </Link>
+
       <h1 className="mt-6 text-3xl font-bold">{project.title}</h1>
-      <div className="mt-4 h-48 rounded-xl bg-zinc-100 dark:bg-zinc-800" />
-      <p className="mt-6 text-zinc-600 dark:text-zinc-400">{project.desc}</p>
-    </section>
+
+      <div className="mt-4 flex flex-wrap gap-2">
+        {project.technologies.map((tech) => (
+          <span
+            key={tech}
+            className="rounded-full bg-zinc-100 px-3 py-1 text-sm text-zinc-700 dark:bg-zinc-800 dark:text-zinc-300"
+          >
+            {tech}
+          </span>
+        ))}
+      </div>
+
+      <p className="mt-8 text-zinc-700 leading-relaxed dark:text-zinc-300">
+        {project.description}
+      </p>
+
+      <div className="mt-8 flex gap-4">
+        <a
+          href={project.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="rounded-full bg-zinc-900 px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-zinc-700 dark:bg-white dark:text-zinc-900 dark:hover:bg-zinc-200"
+        >
+          Открыть сайт &rarr;
+        </a>
+        <Link
+          href="/contact"
+          className="rounded-full border border-zinc-300 px-6 py-3 text-sm font-medium transition-colors hover:bg-zinc-50 dark:border-zinc-700 dark:hover:bg-zinc-900"
+        >
+          Заказать похожий
+        </Link>
+      </div>
+    </article>
   );
 }
