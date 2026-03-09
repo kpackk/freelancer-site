@@ -1,0 +1,38 @@
+[
+  {
+    "slug": "espaniero",
+    "title": "Espaniero.ru",
+    "url": "https://espaniero.ru/",
+    "description": "Онлайн-школа испанского языка с 7 500+ учеников. Реализована полноценная LMS-платформа: личный кабинет, интерактивные тренажёры, система уровней A1–C2, онлайн-оплата и CRM-интеграция. Сайт показывает рейтинг 5.0 на Яндекс.Картах и Google.",
+    "technologies": ["PHP", "WordPress", "WooCommerce", "JavaScript", "MySQL"],
+    "category": "website",
+    "featured": true
+  },
+  {
+    "slug": "assoro",
+    "title": "Assoro.ru",
+    "url": "https://assoro.ru/",
+    "description": "Интернет-магазин авторских аксессуаров для волос бренда ASSORO. Полноценный e-commerce с каталогом, фильтрами, промокодами, партнёрской программой и блогом. Реализована мобильная версия и интеграция с мессенджерами.",
+    "technologies": ["PHP", "WordPress", "WooCommerce", "JavaScript", "CSS3"],
+    "category": "ecommerce",
+    "featured": true
+  },
+  {
+    "slug": "exactcarbon",
+    "title": "ExactCarbon.ru",
+    "url": "https://exactcarbon.ru/",
+    "description": "Корпоративный сайт для компании в сфере углеродных технологий. Разработана структура, вёрстка и SEO-оптимизация посадочных страниц под B2B-аудиторию.",
+    "technologies": ["WordPress", "PHP", "HTML5", "CSS3"],
+    "category": "website",
+    "featured": false
+  },
+  {
+    "slug": "danila-master",
+    "title": "Danila-Master.ru",
+    "url": "https://danila-master.ru/",
+    "description": "Сайт производителя гранитных памятников с разветвлённым каталогом и офисами по всей России. Реализованы SEO-страницы категорий, Schema.org разметка для товаров, онлайн-форма заказа и интеграция с картами для поиска ближайшего офиса.",
+    "technologies": ["WordPress", "PHP", "JavaScript", "Schema.org", "MySQL"],
+    "category": "website",
+    "featured": true
+  }
+]

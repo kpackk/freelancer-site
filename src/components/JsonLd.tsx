@@ -2,19 +2,39 @@ export default function JsonLd() {
   const schema = {
     "@context": "https://schema.org",
     "@type": "Person",
-    name: "Freelancer",
-    jobTitle: "IT-специалист",
+    name: "Ruslan",
+    alternateName: "Ruslan WEB",
+    jobTitle: "Full-stack веб-разработчик",
     description:
-      "Веб-разработка, автоматизация процессов, техническое консультирование.",
+      "Фриланс-разработчик с опытом в Python, PHP, WordPress и AI-интеграциях. Помогаю бизнесу автоматизировать процессы и выглядеть профессионально в сети.",
     url: "https://freelancer-site.vercel.app",
-    sameAs: [],
-    knowsAbout: [
-      "Web Development",
-      "React",
-      "Next.js",
-      "Node.js",
-      "TypeScript",
+    sameAs: [
+      "https://kwork.ru/user/ruslan_web",
+      "https://fl.ru/users/ruslan_web",
+      "https://t.me/ruslan_web_dev",
     ],
+    knowsAbout: [
+      "Python",
+      "PHP",
+      "Laravel",
+      "WordPress",
+      "JavaScript",
+      "Vue.js",
+      "Next.js",
+      "Telegram Bot Development",
+      "Web Scraping",
+      "AI Integration",
+      "SEO",
+    ],
+    makesOffer: {
+      "@type": "Offer",
+      itemOffered: {
+        "@type": "Service",
+        name: "Веб-разработка и автоматизация",
+        description:
+          "Разработка сайтов, Telegram-ботов, парсинг данных, AI-интеграции",
+      },
+    },
   };
 
   return (

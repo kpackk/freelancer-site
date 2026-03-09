@@ -14,6 +14,7 @@ export default function Footer() {
                 { href: "/services", label: "Услуги" },
                 { href: "/portfolio", label: "Портфолио" },
                 { href: "/blog", label: "Блог" },
+                { href: "/contact", label: "Контакты" },
               ].map((link) => (
                 <li key={link.href}>
                   <Link
@@ -32,24 +33,40 @@ export default function Footer() {
               Контакты
             </h3>
             <ul className="mt-4 space-y-2 text-sm text-zinc-600 dark:text-zinc-400">
-              <li>email@example.com</li>
-              <li>Telegram: @username</li>
+              <li>
+                <a href="mailto:hello@ruslanweb.ru" className="hover:text-zinc-900 dark:hover:text-zinc-100">
+                  hello@ruslanweb.ru
+                </a>
+              </li>
+              <li>
+                <a href="https://t.me/ruslan_web_dev" target="_blank" rel="noopener noreferrer" className="hover:text-zinc-900 dark:hover:text-zinc-100">
+                  Telegram: @ruslan_web_dev
+                </a>
+              </li>
             </ul>
           </div>
 
           <div>
             <h3 className="text-sm font-semibold uppercase tracking-wider text-zinc-900 dark:text-zinc-100">
-              Соцсети
+              Фриланс-площадки
             </h3>
             <ul className="mt-4 space-y-2 text-sm text-zinc-600 dark:text-zinc-400">
-              <li>GitHub</li>
-              <li>LinkedIn</li>
+              <li>
+                <a href="https://kwork.ru/user/ruslan_web" target="_blank" rel="noopener noreferrer" className="hover:text-zinc-900 dark:hover:text-zinc-100">
+                  Kwork
+                </a>
+              </li>
+              <li>
+                <a href="https://fl.ru/users/ruslan_web" target="_blank" rel="noopener noreferrer" className="hover:text-zinc-900 dark:hover:text-zinc-100">
+                  FL.ru
+                </a>
+              </li>
             </ul>
           </div>
         </div>
 
         <div className="mt-8 border-t border-zinc-200 pt-8 text-center text-sm text-zinc-500 dark:border-zinc-800">
-          &copy; {new Date().getFullYear()} Freelancer. Все права защищены.
+          &copy; {new Date().getFullYear()} Ruslan WEB. Все права защищены.
         </div>
       </div>
     </footer>

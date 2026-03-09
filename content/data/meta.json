@@ -1,0 +1,31 @@
+{
+  "name": "Ruslan",
+  "brand": "Ruslan WEB",
+  "tagline": "Разрабатываю сайты, Telegram-ботов и AI-решения — быстро, чисто, с результатом",
+  "description": "Фриланс-разработчик с опытом в Python, PHP, WordPress и AI-интеграциях. Помогаю бизнесу автоматизировать процессы и выглядеть профессионально в сети.",
+  "experience": {
+    "years": 5,
+    "projectsCompleted": 50,
+    "clients": 40
+  },
+  "profiles": {
+    "kwork": "https://kwork.ru/user/ruslan_web",
+    "flru": "https://fl.ru/users/ruslan_web"
+  },
+  "contacts": {
+    "email": "hello@ruslanweb.ru",
+    "telegram": "@ruslan_web_dev"
+  },
+  "socialLinks": {
+    "github": "",
+    "telegram": "https://t.me/ruslan_web_dev"
+  },
+  "location": "Россия (работаю удалённо)",
+  "availability": "available",
+  "languages": ["Русский", "English (Intermediate)"],
+  "seo": {
+    "defaultTitle": "Ruslan WEB — фриланс-разработчик | Сайты, боты, автоматизация",
+    "defaultDescription": "Разработка Telegram-ботов, сайтов на WordPress и Next.js, парсинг, AI-интеграции. Быстро, надёжно, с гарантией результата.",
+    "keywords": ["фриланс разработчик", "telegram бот разработка", "wordpress сайт", "парсинг python", "next.js разработка"]
+  }
+}

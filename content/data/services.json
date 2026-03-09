@@ -1,0 +1,146 @@
+[
+  {
+    "slug": "telegram-bots",
+    "title": "Разработка Telegram-ботов",
+    "shortDescription": "Боты любой сложности: продажи, поддержка, GPT-ассистенты, Mini Apps, интеграции с CRM и API.",
+    "icon": "bot",
+    "price": { "from": 4000, "currency": "RUB" },
+    "deliveryDays": 7,
+    "technologies": ["Python", "aiogram", "Telethon", "GPT API"],
+    "features": [
+      "Inline-кнопки, FSM-сценарии, многошаговые диалоги",
+      "GPT-4 / Claude интеграция для AI-ответов",
+      "Telegram Mini Apps (React/Vue внутри Telegram)",
+      "Платёжные системы: ЮKassa, Telegram Stars",
+      "CRM-интеграции и вебхуки",
+      "Деплой на VPS с автозапуском"
+    ],
+    "order": 1
+  },
+  {
+    "slug": "parsing-automation",
+    "title": "Парсинг и автоматизация",
+    "shortDescription": "Сбор данных с любых сайтов, автоматизация рутинных задач, обход защит. Без ручного труда.",
+    "icon": "cpu",
+    "price": { "from": 3000, "currency": "RUB" },
+    "deliveryDays": 5,
+    "technologies": ["Python", "Selenium", "Scrapy", "Playwright", "BeautifulSoup"],
+    "features": [
+      "Парсинг сайтов с авторизацией и JS-рендерингом",
+      "Обход Cloudflare, капчи (2captcha/anti-captcha)",
+      "Экспорт в Excel, Google Sheets, базу данных",
+      "Регулярный сбор данных по расписанию (cron)",
+      "Мониторинг цен конкурентов",
+      "Автоматизация браузерных действий"
+    ],
+    "order": 2
+  },
+  {
+    "slug": "ai-manager",
+    "title": "ИИ-менеджер для магазина",
+    "shortDescription": "AI-ассистент на базе GPT отвечает на вопросы клиентов 24/7 в Telegram, WhatsApp или на сайте.",
+    "icon": "message-circle",
+    "price": { "from": 8000, "currency": "RUB" },
+    "deliveryDays": 14,
+    "technologies": ["Python", "GPT-4", "aiogram", "FastAPI", "PostgreSQL"],
+    "features": [
+      "Обучение на базе знаний вашего магазина",
+      "Ответы на вопросы о товарах, ценах, доставке",
+      "Интеграция с каталогом и остатками",
+      "Подключение к Telegram, WhatsApp, виджету сайта",
+      "Передача сложных вопросов оператору",
+      "Статистика диалогов и конверсий"
+    ],
+    "order": 3
+  },
+  {
+    "slug": "layout",
+    "title": "Вёрстка по макету",
+    "shortDescription": "Pixel-perfect HTML/CSS вёрстка из Figma или PSD с адаптивом под все устройства.",
+    "icon": "figma",
+    "price": { "from": 3000, "currency": "RUB" },
+    "deliveryDays": 5,
+    "technologies": ["HTML5", "CSS3", "JavaScript", "Tailwind CSS", "Figma"],
+    "features": [
+      "Pixel-perfect реализация дизайна",
+      "Адаптивная вёрстка: mobile, tablet, desktop",
+      "Кросс-браузерная совместимость",
+      "Чистый семантический HTML",
+      "CSS-анимации и интерактивность",
+      "Оптимизация скорости загрузки"
+    ],
+    "order": 4
+  },
+  {
+    "slug": "wordpress",
+    "title": "WordPress-сайты",
+    "shortDescription": "Создание и доработка сайтов на WordPress: темы, плагины, мультиязычность, ускорение.",
+    "icon": "globe",
+    "price": { "from": 5000, "currency": "RUB" },
+    "deliveryDays": 10,
+    "technologies": ["WordPress", "PHP", "WooCommerce", "WPML", "ACF"],
+    "features": [
+      "Кастомные темы и дочерние темы",
+      "Разработка плагинов под задачи",
+      "WooCommerce — настройка магазина",
+      "WPML — мультиязычные сайты",
+      "Ускорение: кэш, оптимизация изображений, CDN",
+      "Перенос сайта на новый хостинг"
+    ],
+    "order": 5
+  },
+  {
+    "slug": "php-laravel",
+    "title": "PHP / Laravel / 1С-Битрикс / Vue.js",
+    "shortDescription": "Доработка бэкенда, REST API, интеграции, рефакторинг легаси-кода на PHP/Laravel/Битрикс.",
+    "icon": "code",
+    "price": { "from": 4000, "currency": "RUB" },
+    "deliveryDays": 7,
+    "technologies": ["PHP", "Laravel", "1С-Битрикс", "Vue.js", "MySQL", "REST API"],
+    "features": [
+      "Разработка и доработка Laravel-приложений",
+      "REST API — проектирование и реализация",
+      "1С-Битрикс: модули, компоненты, интеграции",
+      "Vue.js — SPA-компоненты и фронтенд",
+      "Интеграции с платёжными системами и сервисами",
+      "Рефакторинг и покрытие тестами"
+    ],
+    "order": 6
+  },
+  {
+    "slug": "website-turnkey",
+    "title": "Сайт под ключ",
+    "shortDescription": "Лендинги, корпоративные сайты и интернет-магазины — от дизайна до деплоя.",
+    "icon": "layout",
+    "price": { "from": 20000, "currency": "RUB" },
+    "deliveryDays": 21,
+    "technologies": ["Next.js", "WordPress", "Laravel", "Tailwind CSS", "Vercel"],
+    "features": [
+      "Прототип и UI/UX дизайн в Figma",
+      "SEO-оптимизированная структура с нуля",
+      "Адаптивная вёрстка для всех устройств",
+      "CMS для управления контентом",
+      "Деплой, SSL, базовая настройка хостинга",
+      "Техническая поддержка после запуска"
+    ],
+    "order": 7
+  },
+  {
+    "slug": "seo-analytics",
+    "title": "SEO-аналитика",
+    "shortDescription": "Технический SEO-аудит, настройка Яндекс.Вебмастер / GSC / Метрики и рекомендации по продвижению.",
+    "icon": "bar-chart-2",
+    "price": { "from": 4000, "currency": "RUB" },
+    "deliveryDays": 7,
+    "technologies": ["Яндекс.Вебмастер", "Google Search Console", "Яндекс.Метрика", "GA4"],
+    "features": [
+      "Технический SEO-аудит: скорость, индексация, ошибки",
+      "Настройка и верификация GSC / Яндекс.Вебмастер",
+      "Установка и настройка Яндекс.Метрики и GA4",
+      "Анализ позиций и поискового трафика",
+      "Schema.org разметка (JSON-LD)",
+      "Отчёт с приоритетными рекомендациями"
+    ],
+    "order": 8
+  }
+]

@@ -17,15 +17,24 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "Freelancer — IT-специалист",
-    template: "%s | Freelancer",
+    default: "Ruslan WEB — фриланс-разработчик | Сайты, боты, автоматизация",
+    template: "%s | Ruslan WEB",
   },
   description:
-    "Персональный сайт IT-фрилансера. Веб-разработка, автоматизация, консалтинг.",
+    "Разработка Telegram-ботов, сайтов на WordPress и Next.js, парсинг, AI-интеграции. Быстро, надёжно, с гарантией результата.",
+  keywords: [
+    "фриланс разработчик",
+    "telegram бот разработка",
+    "wordpress сайт",
+    "парсинг python",
+    "next.js разработка",
+    "сайт под ключ",
+    "веб-разработка",
+  ],
   openGraph: {
     type: "website",
     locale: "ru_RU",
-    siteName: "Freelancer",
+    siteName: "Ruslan WEB",
   },
 };
 
