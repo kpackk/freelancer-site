@@ -22,7 +22,7 @@
     "title": "Парсинг и автоматизация",
     "shortDescription": "Сбор данных с любых сайтов, автоматизация рутинных задач, обход защит. Без ручного труда.",
     "icon": "cpu",
-    "price": { "from": 3000, "currency": "RUB" },
+    "price": { "from": 4000, "currency": "RUB" },
     "deliveryDays": 5,
     "technologies": ["Python", "Selenium", "Scrapy", "Playwright", "BeautifulSoup"],
     "features": [
@@ -40,7 +40,7 @@
     "title": "ИИ-менеджер для магазина",
     "shortDescription": "AI-ассистент на базе GPT отвечает на вопросы клиентов 24/7 в Telegram, WhatsApp или на сайте.",
     "icon": "message-circle",
-    "price": { "from": 8000, "currency": "RUB" },
+    "price": { "from": 4000, "currency": "RUB" },
     "deliveryDays": 14,
     "technologies": ["Python", "GPT-4", "aiogram", "FastAPI", "PostgreSQL"],
     "features": [
@@ -58,7 +58,7 @@
     "title": "Вёрстка по макету",
     "shortDescription": "Pixel-perfect HTML/CSS вёрстка из Figma или PSD с адаптивом под все устройства.",
     "icon": "figma",
-    "price": { "from": 3000, "currency": "RUB" },
+    "price": { "from": 4000, "currency": "RUB" },
     "deliveryDays": 5,
     "technologies": ["HTML5", "CSS3", "JavaScript", "Tailwind CSS", "Figma"],
     "features": [
@@ -76,7 +76,7 @@
     "title": "WordPress-сайты",
     "shortDescription": "Создание и доработка сайтов на WordPress: темы, плагины, мультиязычность, ускорение.",
     "icon": "globe",
-    "price": { "from": 5000, "currency": "RUB" },
+    "price": { "from": 4000, "currency": "RUB" },
     "deliveryDays": 10,
     "technologies": ["WordPress", "PHP", "WooCommerce", "WPML", "ACF"],
     "features": [

@@ -7,9 +7,13 @@ type Props = { params: Promise<{ slug: string }> };
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const project = portfolio.find((p) => p.slug === slug);
+  const title = project?.title ?? "Проект";
+  const description = project?.description ?? "Детали проекта.";
   return {
-    title: project?.title ?? "Проект",
-    description: project?.description ?? "Детали проекта.",
+    title,
+    description,
+    openGraph: { title, description },
+    alternates: { canonical: `/portfolio/${slug}` },
   };
 }
 

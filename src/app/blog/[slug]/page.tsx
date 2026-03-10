@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { MDXRemote } from "next-mdx-remote/rsc";
 import { getAllPosts, getPostBySlug } from "@/lib/mdx";
 
 type Props = { params: Promise<{ slug: string }> };
@@ -7,9 +8,13 @@ type Props = { params: Promise<{ slug: string }> };
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const post = getPostBySlug(slug);
+  const title = post?.title ?? "Статья";
+  const description = post?.description ?? "";
   return {
-    title: post?.title ?? "Статья",
-    description: post?.description ?? "",
+    title,
+    description,
+    openGraph: { title, description, type: "article" },
+    alternates: { canonical: `/blog/${slug}` },
   };
 }
 
@@ -42,9 +47,8 @@ export default async function BlogPostPage({ params }: Props) {
       </Link>
       <time className="mt-6 block text-sm text-zinc-500">{post.date}</time>
       <h1 className="mt-2 text-3xl font-bold">{post.title}</h1>
-      <div className="prose prose-zinc mt-8 dark:prose-invert">
-        {/* MDX rendering will be added later; for now show raw content */}
-        <p className="whitespace-pre-wrap">{post.content}</p>
+      <div className="prose prose-zinc mt-8 max-w-none dark:prose-invert">
+        <MDXRemote source={post.content} />
       </div>
     </article>
   );

@@ -2,8 +2,14 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Отзывы",
-  description: "Отзывы клиентов о работе Ruslan WEB. 50+ проектов, 5+ лет опыта.",
+  title: "Отзывы · Ruslan WEB",
+  description:
+    "Отзывы клиентов о работе Ruslan WEB. 50+ проектов, 5+ лет опыта. Реальные кейсы и результаты.",
+  openGraph: {
+    title: "Отзывы · Ruslan WEB",
+    description: "Отзывы клиентов о работе Ruslan WEB. 50+ проектов.",
+  },
+  alternates: { canonical: "/reviews" },
 };
 
 const reviews = [

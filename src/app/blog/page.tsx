@@ -3,8 +3,14 @@ import Link from "next/link";
 import { getAllPosts } from "@/lib/mdx";
 
 export const metadata: Metadata = {
-  title: "Блог",
-  description: "Статьи о веб-разработке, автоматизации и IT.",
+  title: "Блог · Ruslan WEB",
+  description:
+    "Статьи о веб-разработке, Telegram-ботах, парсинге, WordPress и SEO. Практические гайды от IT-фрилансера.",
+  openGraph: {
+    title: "Блог · Ruslan WEB",
+    description: "Статьи о веб-разработке, автоматизации и IT от фрилансера.",
+  },
+  alternates: { canonical: "/blog" },
 };
 
 export default function BlogPage() {

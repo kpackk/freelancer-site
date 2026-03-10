@@ -9,9 +9,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const content = getServiceContent(slug);
   const service = services.find((s) => s.slug === slug);
+  const title = service?.title ?? "Услуга";
+  const description = content?.metaDescription ?? service?.shortDescription ?? "";
   return {
-    title: service?.title ?? "Услуга",
-    description: content?.metaDescription ?? service?.shortDescription ?? "",
+    title,
+    description,
+    openGraph: { title, description },
+    alternates: { canonical: `/services/${slug}` },
   };
 }
 

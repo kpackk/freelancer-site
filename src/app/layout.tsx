@@ -17,13 +17,16 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://freelancer-site.vercel.app";
+
 export const metadata: Metadata = {
+  metadataBase: new URL(BASE_URL),
   title: {
-    default: "Ruslan WEB — фриланс-разработчик | Сайты, боты, автоматизация",
+    default: "Ruslan — IT-фрилансер | Telegram-боты, сайты, автоматизация",
     template: "%s | Ruslan WEB",
   },
   description:
-    "Разработка Telegram-ботов, сайтов на WordPress и Next.js, парсинг, AI-интеграции. Быстро, надёжно, с гарантией результата.",
+    "IT-разработчик с опытом 5+ лет. Telegram-боты, сайты под ключ, парсинг, WordPress, SEO. Работаю официально, возможен NDA. Цены от 4 000 ₽ — портфолио и кейсы.",
   keywords: [
     "фриланс разработчик",
     "telegram бот разработка",
@@ -32,11 +35,26 @@ export const metadata: Metadata = {
     "next.js разработка",
     "сайт под ключ",
     "веб-разработка",
+    "заказать сайт",
+    "IT фрилансер",
   ],
   openGraph: {
     type: "website",
     locale: "ru_RU",
     siteName: "Ruslan WEB",
+    title: "Ruslan — IT-фрилансер | Telegram-боты, сайты, автоматизация",
+    description:
+      "IT-разработчик с опытом 5+ лет. Telegram-боты, сайты под ключ, парсинг, WordPress, SEO. Работаю официально, возможен NDA. Цены от 4 000 ₽.",
+    url: BASE_URL,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Ruslan — IT-фрилансер | Telegram-боты, сайты, автоматизация",
+    description:
+      "IT-разработчик 5+ лет. Telegram-боты, сайты, парсинг, WordPress, SEO. От 4 000 ₽.",
+  },
+  alternates: {
+    canonical: "/",
   },
 };
 

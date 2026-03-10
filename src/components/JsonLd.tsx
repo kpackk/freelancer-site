@@ -1,40 +1,76 @@
+const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://freelancer-site.vercel.app";
+
 export default function JsonLd() {
   const schema = {
     "@context": "https://schema.org",
-    "@type": "Person",
-    name: "Ruslan",
-    alternateName: "Ruslan WEB",
-    jobTitle: "Full-stack веб-разработчик",
-    description:
-      "Фриланс-разработчик с опытом в Python, PHP, WordPress и AI-интеграциях. Помогаю бизнесу автоматизировать процессы и выглядеть профессионально в сети.",
-    url: "https://freelancer-site.vercel.app",
-    sameAs: [
-      "https://kwork.ru/user/ruslan_web",
-      "https://fl.ru/users/ruslan_web",
-      "https://t.me/ruslan_web_dev",
-    ],
-    knowsAbout: [
-      "Python",
-      "PHP",
-      "Laravel",
-      "WordPress",
-      "JavaScript",
-      "Vue.js",
-      "Next.js",
-      "Telegram Bot Development",
-      "Web Scraping",
-      "AI Integration",
-      "SEO",
-    ],
-    makesOffer: {
-      "@type": "Offer",
-      itemOffered: {
-        "@type": "Service",
-        name: "Веб-разработка и автоматизация",
+    "@graph": [
+      {
+        "@type": "Person",
+        "@id": `${BASE_URL}/#person`,
+        name: "Руслан",
+        alternateName: "Ruslan WEB",
+        url: BASE_URL,
+        jobTitle: "IT-фрилансер",
         description:
-          "Разработка сайтов, Telegram-ботов, парсинг данных, AI-интеграции",
+          "Разработчик Telegram-ботов, сайтов под ключ, систем автоматизации и ИИ-решений",
+        knowsAbout: [
+          "Python",
+          "aiogram",
+          "PHP",
+          "Laravel",
+          "WordPress",
+          "Vue.js",
+          "Next.js",
+          "Scrapy",
+          "Selenium",
+          "GPT API",
+          "SEO",
+        ],
+        sameAs: [
+          "https://kwork.ru/user/ruslan_web",
+          "https://fl.ru/users/ruslan_web",
+          "https://t.me/ruslan_web_dev",
+        ],
+        knowsLanguage: ["ru", "en"],
+        offers: {
+          "@type": "AggregateOffer",
+          lowPrice: "4000",
+          highPrice: "100000",
+          priceCurrency: "RUB",
+          offerCount: "8",
+        },
       },
-    },
+      {
+        "@type": "LocalBusiness",
+        "@id": `${BASE_URL}/#business`,
+        name: "Ruslan WEB",
+        description:
+          "IT-фрилансер: разработка сайтов, Telegram-ботов, парсинг, автоматизация, ИИ-решения",
+        url: BASE_URL,
+        priceRange: "от 4 000 ₽",
+        areaServed: {
+          "@type": "Country",
+          name: "Россия",
+        },
+        founder: { "@id": `${BASE_URL}/#person` },
+        contactPoint: {
+          "@type": "ContactPoint",
+          contactType: "customer service",
+          email: "hello@ruslanweb.ru",
+          url: "https://t.me/ruslan_web_dev",
+        },
+      },
+      {
+        "@type": "WebSite",
+        "@id": `${BASE_URL}/#website`,
+        url: BASE_URL,
+        name: "Ruslan WEB",
+        description:
+          "Персональный сайт IT-фрилансера: Telegram-боты, сайты, автоматизация",
+        publisher: { "@id": `${BASE_URL}/#person` },
+        inLanguage: "ru-RU",
+      },
+    ],
   };
 
   return (

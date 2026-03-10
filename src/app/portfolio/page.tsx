@@ -3,9 +3,14 @@ import Link from "next/link";
 import portfolio from "@/../content/data/portfolio.json";
 
 export const metadata: Metadata = {
-  title: "Портфолио",
+  title: "Портфолио · Ruslan WEB",
   description:
     "Выполненные проекты: espaniero.ru, assoro.ru, exactcarbon.ru, danila-master.ru. Сайты, интернет-магазины, LMS-платформы.",
+  openGraph: {
+    title: "Портфолио · Ruslan WEB",
+    description: "Сайты, интернет-магазины, LMS-платформы. Проекты Ruslan WEB.",
+  },
+  alternates: { canonical: "/portfolio" },
 };
 
 export default function PortfolioPage() {
