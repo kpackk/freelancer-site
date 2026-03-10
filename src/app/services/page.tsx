@@ -3,11 +3,11 @@ import Link from "next/link";
 import services from "@/../content/data/services.json";
 
 export const metadata: Metadata = {
-  title: "Услуги IT-фрилансера · Ruslan WEB",
+  title: "Услуги IT-фрилансера",
   description:
     "8 направлений разработки: Telegram-боты, сайты под ключ, парсинг, WordPress, ИИ, SEO-аналитика. Цены от 4 000 ₽. Официально, NDA по запросу.",
   openGraph: {
-    title: "Услуги IT-фрилансера · Ruslan WEB",
+    title: "Услуги IT-фрилансера",
     description: "8 направлений: Telegram-боты, сайты, парсинг, WordPress, ИИ, SEO. От 4 000 ₽.",
   },
   alternates: { canonical: "/services" },

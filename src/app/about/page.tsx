@@ -2,15 +2,16 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Обо мне · Ruslan WEB — IT-фрилансер",
+  title: "Обо мне — IT-фрилансер",
   description:
     "IT-фрилансер полного стека: веб-разработка, Telegram-боты, парсинг, ИИ-решения. Работаю на Kwork и FL.ru. Более 5 лет в разработке.",
   openGraph: {
-    title: "Обо мне · Ruslan WEB — IT-фрилансер",
+    title: "Обо мне — IT-фрилансер",
     description:
       "Руслан — IT-разработчик 5+ лет. Специализация: Telegram-боты, сайты, автоматизация, ИИ. Работаю официально, NDA по запросу.",
     type: "profile",
   },
+  alternates: { canonical: "/about" },
 };
 
 export default function AboutPage() {

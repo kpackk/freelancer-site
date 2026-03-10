@@ -2,11 +2,11 @@ import type { Metadata } from "next";
 import ContactForm from "@/components/ContactForm";
 
 export const metadata: Metadata = {
-  title: "Контакт · Ruslan WEB — заказать разработку",
+  title: "Контакт — заказать разработку",
   description:
     "Обсудим вашу задачу: Telegram, email или форма. Отвечаю в течение нескольких часов в рабочие дни. Консультация бесплатно.",
   openGraph: {
-    title: "Контакт · Ruslan WEB — заказать разработку",
+    title: "Контакт — заказать разработку",
     description:
       "Свяжитесь по Telegram, email или форме. Консультация бесплатно.",
     type: "website",

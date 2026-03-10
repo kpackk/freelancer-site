@@ -2,11 +2,54 @@ import Link from "next/link";
 import services from "@/../content/data/services.json";
 import portfolio from "@/../content/data/portfolio.json";
 
+const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://freelancer-site.vercel.app";
+
+const faqItems = [
+  {
+    question: "Сколько стоит разработка?",
+    answer: "Цены начинаются от 4 000 \u20BD за простые задачи (бот, парсер, вёрстка). Сайт под ключ — от 20 000 \u20BD. Точная стоимость зависит от объёма: пришлите ТЗ или опишите задачу — дам оценку в течение нескольких часов.",
+  },
+  {
+    question: "Какие сроки выполнения?",
+    answer: "Простые задачи — 2\u20135 дней. Сайт под ключ — 14\u201345 дней. Точные сроки фиксируются до начала работы и не меняются без согласования.",
+  },
+  {
+    question: "Работаете по договору?",
+    answer: "Да, работаю официально. Возможен договор ГПХ или оферта. NDA по запросу. Также работаю через безопасные сделки на Kwork и FL.ru.",
+  },
+  {
+    question: "Какие технологии используете?",
+    answer: "Python (aiogram, Scrapy, Selenium), PHP (Laravel, 1С-Битрикс), JavaScript (Next.js, Vue.js, React), WordPress, PostgreSQL, GPT API. Выбираю стек под задачу, а не наоборот.",
+  },
+  {
+    question: "Что входит в поддержку после сдачи?",
+    answer: "30 дней бесплатной поддержки: исправление багов, мелкие корректировки, консультации. Дальнейшая поддержка — по отдельной договорённости.",
+  },
+];
+
 export default function Home() {
   const featuredProjects = portfolio.filter((p) => p.featured);
 
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqItems.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.answer,
+      },
+    })),
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+
       {/* Hero */}
       <section className="mx-auto max-w-5xl px-6 py-24 text-center">
         <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">
@@ -102,8 +145,25 @@ export default function Home() {
         </div>
       </section>
 
-      {/* CTA */}
+      {/* FAQ */}
       <section className="border-t border-zinc-200 bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-900/50">
+        <div className="mx-auto max-w-3xl px-6 py-20">
+          <h2 className="text-center text-2xl font-bold">Частые вопросы</h2>
+          <dl className="mt-12 space-y-8">
+            {faqItems.map((item) => (
+              <div key={item.question}>
+                <dt className="text-lg font-semibold">{item.question}</dt>
+                <dd className="mt-2 text-zinc-600 dark:text-zinc-400">
+                  {item.answer}
+                </dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="border-t border-zinc-200 dark:border-zinc-800">
         <div className="mx-auto max-w-3xl px-6 py-20 text-center">
           <h2 className="text-2xl font-bold">Есть задача?</h2>
           <p className="mt-4 text-zinc-600 dark:text-zinc-400">

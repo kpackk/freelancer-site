@@ -3,6 +3,8 @@ import Link from "next/link";
 import services from "@/../content/data/services.json";
 import { servicesContent, getServiceContent } from "@/lib/services-content";
 
+const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://freelancer-site.vercel.app";
+
 type Props = { params: Promise<{ slug: string }> };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -39,8 +41,33 @@ export default async function ServicePage({ params }: Props) {
     );
   }
 
+  const serviceSchema = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: service.title,
+    description: content.metaDescription,
+    url: `${BASE_URL}/services/${slug}`,
+    provider: { "@id": `${BASE_URL}/#person` },
+    areaServed: { "@type": "Country", name: "Россия" },
+    offers: {
+      "@type": "Offer",
+      priceCurrency: "RUB",
+      price: String(service.price.from),
+      priceSpecification: {
+        "@type": "UnitPriceSpecification",
+        priceCurrency: "RUB",
+        price: String(service.price.from),
+        unitText: "от",
+      },
+    },
+  };
+
   return (
     <article className="mx-auto max-w-3xl px-6 py-20">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
+      />
       <Link
         href="/services"
         className="text-sm text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-100"
