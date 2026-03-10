@@ -3,6 +3,8 @@ import { Geist, Geist_Mono } from "next/font/google";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import JsonLd from "@/components/JsonLd";
+import GoogleAnalytics from "@/components/GoogleAnalytics";
+import YandexMetrika from "@/components/YandexMetrika";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -48,6 +50,19 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <GoogleAnalytics />
+        <YandexMetrika />
+        {process.env.NEXT_PUBLIC_YM_ID && (
+          <noscript>
+            <div>
+              <img
+                src={`https://mc.yandex.ru/watch/${process.env.NEXT_PUBLIC_YM_ID}`}
+                style={{ position: "absolute", left: "-9999px" }}
+                alt=""
+              />
+            </div>
+          </noscript>
+        )}
         <JsonLd />
         <Header />
         <main className="min-h-[calc(100vh-8rem)]">{children}</main>
