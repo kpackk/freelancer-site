@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import portfolio from "@/../content/data/portfolio.json";
 
@@ -26,30 +27,42 @@ export default function PortfolioPage() {
           <Link
             key={p.slug}
             href={`/portfolio/${p.slug}`}
-            className="group rounded-xl border border-zinc-200 p-6 transition-colors hover:border-zinc-400 dark:border-zinc-800 dark:hover:border-zinc-600"
+            className="group overflow-hidden rounded-xl border border-zinc-200 transition-colors hover:border-zinc-400 dark:border-zinc-800 dark:hover:border-zinc-600"
           >
-            <div className="flex items-center justify-between">
-              <h2 className="text-lg font-semibold group-hover:underline">
-                {p.title}
-              </h2>
-              {p.featured && (
-                <span className="rounded-full bg-zinc-900 px-2 py-0.5 text-xs text-white dark:bg-zinc-100 dark:text-zinc-900">
-                  Featured
-                </span>
-              )}
+            <div className="relative aspect-[16/10] w-full bg-zinc-100 dark:bg-zinc-800">
+              <Image
+                src={`/images/portfolio-${p.slug}-website.jpg`}
+                alt={p.imageAlt ?? p.title}
+                fill
+                sizes="(max-width: 640px) 100vw, 50vw"
+                className="object-cover transition-transform duration-300 group-hover:scale-105"
+                loading="lazy"
+              />
             </div>
-            <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400 line-clamp-3">
-              {p.description}
-            </p>
-            <div className="mt-4 flex flex-wrap gap-1">
-              {p.technologies.map((tech) => (
-                <span
-                  key={tech}
-                  className="rounded-full bg-zinc-100 px-2 py-0.5 text-xs text-zinc-600 dark:bg-zinc-800 dark:text-zinc-400"
-                >
-                  {tech}
-                </span>
-              ))}
+            <div className="p-6">
+              <div className="flex items-center justify-between">
+                <h2 className="text-lg font-semibold group-hover:underline">
+                  {p.title}
+                </h2>
+                {p.featured && (
+                  <span className="rounded-full bg-zinc-900 px-2 py-0.5 text-xs text-white dark:bg-zinc-100 dark:text-zinc-900">
+                    Featured
+                  </span>
+                )}
+              </div>
+              <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400 line-clamp-3">
+                {p.description}
+              </p>
+              <div className="mt-4 flex flex-wrap gap-1">
+                {p.technologies.map((tech) => (
+                  <span
+                    key={tech}
+                    className="rounded-full bg-zinc-100 px-2 py-0.5 text-xs text-zinc-600 dark:bg-zinc-800 dark:text-zinc-400"
+                  >
+                    {tech}
+                  </span>
+                ))}
+              </div>
             </div>
           </Link>
         ))}

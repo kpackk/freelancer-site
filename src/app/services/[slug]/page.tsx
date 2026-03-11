@@ -75,7 +75,16 @@ export default async function ServicePage({ params }: Props) {
         &larr; Все услуги
       </Link>
 
-      <h1 className="mt-6 text-3xl font-bold tracking-tight">{content.h1}</h1>
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src={`/icons/${slug}.svg`}
+        alt=""
+        width={48}
+        height={48}
+        aria-hidden="true"
+        className="mt-6"
+      />
+      <h1 className="mt-4 text-3xl font-bold tracking-tight">{content.h1}</h1>
       <p className="mt-4 text-lg text-zinc-600 dark:text-zinc-400">
         {content.subtitle}
       </p>

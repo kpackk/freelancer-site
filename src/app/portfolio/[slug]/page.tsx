@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import portfolio from "@/../content/data/portfolio.json";
 
@@ -46,6 +47,17 @@ export default async function ProjectPage({ params }: Props) {
       </Link>
 
       <h1 className="mt-6 text-3xl font-bold">{project.title}</h1>
+
+      <div className="relative mt-6 aspect-[16/10] w-full overflow-hidden rounded-xl bg-zinc-100 dark:bg-zinc-800">
+        <Image
+          src={`/images/portfolio-${project.slug}-website.jpg`}
+          alt={project.imageAlt ?? project.title}
+          fill
+          sizes="(max-width: 768px) 100vw, 768px"
+          className="object-cover"
+          loading="lazy"
+        />
+      </div>
 
       <div className="mt-4 flex flex-wrap gap-2">
         {(project.fullTechnologies ?? project.technologies).map((tech) => (

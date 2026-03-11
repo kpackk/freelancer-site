@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import services from "@/../content/data/services.json";
 import portfolio from "@/../content/data/portfolio.json";
@@ -51,27 +52,41 @@ export default function Home() {
       />
 
       {/* Hero */}
-      <section className="mx-auto max-w-5xl px-6 py-24 text-center">
-        <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">
-          Ruslan WEB — разработка сайтов, ботов и автоматизации
-        </h1>
-        <p className="mx-auto mt-6 max-w-2xl text-lg text-zinc-600 dark:text-zinc-400">
-          Full-stack фрилансер. 5+ лет опыта, 50+ проектов. Работаю с малым
-          бизнесом и стартапами — фиксированные сроки, NDA по запросу.
-        </p>
-        <div className="mt-10 flex justify-center gap-4">
-          <Link
-            href="/contact"
-            className="rounded-full bg-zinc-900 px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-zinc-700 dark:bg-white dark:text-zinc-900 dark:hover:bg-zinc-200"
-          >
-            Обсудить проект
-          </Link>
-          <Link
-            href="/portfolio"
-            className="rounded-full border border-zinc-300 px-6 py-3 text-sm font-medium transition-colors hover:bg-zinc-50 dark:border-zinc-700 dark:hover:bg-zinc-900"
-          >
-            Смотреть портфолио
-          </Link>
+      <section className="mx-auto max-w-5xl px-6 py-24">
+        <div className="flex flex-col items-center gap-8 md:flex-row md:gap-12">
+          <div className="flex-1 text-center md:text-left">
+            <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">
+              Ruslan WEB — разработка сайтов, ботов и автоматизации
+            </h1>
+            <p className="mt-6 max-w-2xl text-lg text-zinc-600 dark:text-zinc-400">
+              Full-stack фрилансер. 5+ лет опыта, 50+ проектов. Работаю с малым
+              бизнесом и стартапами — фиксированные сроки, NDA по запросу.
+            </p>
+            <div className="mt-10 flex justify-center gap-4 md:justify-start">
+              <Link
+                href="/contact"
+                className="rounded-full bg-zinc-900 px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-zinc-700 dark:bg-white dark:text-zinc-900 dark:hover:bg-zinc-200"
+              >
+                Обсудить проект
+              </Link>
+              <Link
+                href="/portfolio"
+                className="rounded-full border border-zinc-300 px-6 py-3 text-sm font-medium transition-colors hover:bg-zinc-50 dark:border-zinc-700 dark:hover:bg-zinc-900"
+              >
+                Смотреть портфолио
+              </Link>
+            </div>
+          </div>
+          <div className="shrink-0">
+            <Image
+              src="/images/ruslan-web-developer.jpg"
+              alt="Руслан — IT-фрилансер, веб-разработчик и создатель Telegram-ботов"
+              width={280}
+              height={280}
+              className="rounded-full"
+              priority
+            />
+          </div>
         </div>
       </section>
 
@@ -89,6 +104,15 @@ export default function Home() {
                 href={`/services/${service.slug}`}
                 className="group rounded-xl border border-zinc-200 bg-white p-6 transition-colors hover:border-zinc-400 dark:border-zinc-800 dark:bg-zinc-950 dark:hover:border-zinc-600"
               >
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={`/icons/${service.slug}.svg`}
+                  alt=""
+                  width={32}
+                  height={32}
+                  aria-hidden="true"
+                  className="mb-3 text-zinc-700 dark:text-zinc-300"
+                />
                 <h3 className="text-lg font-semibold group-hover:underline">
                   {service.title}
                 </h3>
@@ -113,23 +137,35 @@ export default function Home() {
               <Link
                 key={project.slug}
                 href={`/portfolio/${project.slug}`}
-                className="group rounded-xl border border-zinc-200 p-6 transition-colors hover:border-zinc-400 dark:border-zinc-800 dark:hover:border-zinc-600"
+                className="group overflow-hidden rounded-xl border border-zinc-200 transition-colors hover:border-zinc-400 dark:border-zinc-800 dark:hover:border-zinc-600"
               >
-                <h3 className="text-lg font-semibold group-hover:underline">
-                  {project.title}
-                </h3>
-                <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400 line-clamp-3">
-                  {project.description}
-                </p>
-                <div className="mt-3 flex flex-wrap gap-1">
-                  {project.technologies.slice(0, 3).map((tech) => (
-                    <span
-                      key={tech}
-                      className="rounded-full bg-zinc-100 px-2 py-0.5 text-xs text-zinc-600 dark:bg-zinc-800 dark:text-zinc-400"
-                    >
-                      {tech}
-                    </span>
-                  ))}
+                <div className="relative aspect-[16/10] w-full bg-zinc-100 dark:bg-zinc-800">
+                  <Image
+                    src={`/images/portfolio-${project.slug}-website.jpg`}
+                    alt={project.imageAlt ?? project.title}
+                    fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    className="object-cover transition-transform duration-300 group-hover:scale-105"
+                    loading="lazy"
+                  />
+                </div>
+                <div className="p-6">
+                  <h3 className="text-lg font-semibold group-hover:underline">
+                    {project.title}
+                  </h3>
+                  <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400 line-clamp-3">
+                    {project.description}
+                  </p>
+                  <div className="mt-3 flex flex-wrap gap-1">
+                    {project.technologies.slice(0, 3).map((tech) => (
+                      <span
+                        key={tech}
+                        className="rounded-full bg-zinc-100 px-2 py-0.5 text-xs text-zinc-600 dark:bg-zinc-800 dark:text-zinc-400"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
                 </div>
               </Link>
             ))}

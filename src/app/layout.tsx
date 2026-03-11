@@ -46,6 +46,7 @@ export const metadata: Metadata = {
     description:
       "IT-разработчик с опытом 5+ лет. Telegram-боты, сайты под ключ, парсинг, WordPress, SEO. Работаю официально, возможен NDA. Цены от 4 000 ₽.",
     url: BASE_URL,
+    images: [{ url: "/images/og-image.jpg", width: 1200, height: 630 }],
   },
   twitter: {
     card: "summary_large_image",

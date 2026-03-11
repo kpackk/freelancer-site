@@ -29,6 +29,15 @@ export default function ServicesPage() {
             href={`/services/${s.slug}`}
             className="group rounded-xl border border-zinc-200 p-6 transition-colors hover:border-zinc-400 dark:border-zinc-800 dark:hover:border-zinc-600"
           >
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={`/icons/${s.slug}.svg`}
+              alt=""
+              width={36}
+              height={36}
+              aria-hidden="true"
+              className="mb-3"
+            />
             <h2 className="text-lg font-semibold group-hover:underline">
               {s.title}
             </h2>

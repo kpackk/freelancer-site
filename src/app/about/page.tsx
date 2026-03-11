@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 
 export const metadata: Metadata = {
@@ -17,12 +18,24 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <article className="mx-auto max-w-3xl px-6 py-20">
-      <h1 className="text-3xl font-bold tracking-tight">Обо мне</h1>
-      <p className="mt-6 text-lg text-zinc-700 leading-relaxed dark:text-zinc-300">
-        Я — IT-фрилансер полного стека. Разрабатываю сайты, Telegram-боты,
-        системы автоматизации и ИИ-решения для бизнеса. Работаю самостоятельно,
-        без посредников — заказчик всегда общается напрямую со мной.
-      </p>
+      <div className="flex flex-col items-start gap-8 sm:flex-row">
+        <div className="flex-1">
+          <h1 className="text-3xl font-bold tracking-tight">Обо мне</h1>
+          <p className="mt-6 text-lg text-zinc-700 leading-relaxed dark:text-zinc-300">
+            Я — IT-фрилансер полного стека. Разрабатываю сайты, Telegram-боты,
+            системы автоматизации и ИИ-решения для бизнеса. Работаю самостоятельно,
+            без посредников — заказчик всегда общается напрямую со мной.
+          </p>
+        </div>
+        <Image
+          src="/images/ruslan-web-developer.jpg"
+          alt="Руслан — IT-фрилансер, разработчик сайтов и Telegram-ботов с опытом 5+ лет"
+          width={240}
+          height={240}
+          className="shrink-0 rounded-full"
+          loading="lazy"
+        />
+      </div>
 
       <section className="mt-12">
         <h2 className="text-xl font-semibold">Чем занимаюсь</h2>
