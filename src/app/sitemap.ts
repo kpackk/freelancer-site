@@ -3,7 +3,7 @@ import services from "@/../content/data/services.json";
 import portfolio from "@/../content/data/portfolio.json";
 import { getAllPosts } from "@/lib/mdx";
 
-const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://freelancer-site.vercel.app";
+const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://ruslanfreelance.ru";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticPages = [

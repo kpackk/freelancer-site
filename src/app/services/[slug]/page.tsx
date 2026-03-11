@@ -3,7 +3,7 @@ import Link from "next/link";
 import services from "@/../content/data/services.json";
 import { servicesContent, getServiceContent } from "@/lib/services-content";
 
-const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://freelancer-site.vercel.app";
+const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://ruslanfreelance.ru";
 
 type Props = { params: Promise<{ slug: string }> };
 

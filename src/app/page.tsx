@@ -2,7 +2,7 @@ import Link from "next/link";
 import services from "@/../content/data/services.json";
 import portfolio from "@/../content/data/portfolio.json";
 
-const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://freelancer-site.vercel.app";
+const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://ruslanfreelance.ru";
 
 const faqItems = [
   {
