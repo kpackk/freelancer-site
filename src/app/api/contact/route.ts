@@ -23,7 +23,7 @@ function isValidContact(contact: string): boolean {
   return emailRegex.test(contact) || phoneRegex.test(contact);
 }
 
-const TELEGRAM_CHAT_ID = "8015134978";
+const TELEGRAM_CHAT_ID = process.env.TELEGRAM_CHAT_ID || "8015134978";
 
 async function sendTelegram(text: string): Promise<boolean> {
   const token = process.env.TELEGRAM_BOT_TOKEN;
