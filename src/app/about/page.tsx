@@ -11,6 +11,7 @@ export const metadata: Metadata = {
     description:
       "Руслан — IT-разработчик 5+ лет. Специализация: Telegram-боты, сайты, автоматизация, ИИ. Работаю официально, NDA по запросу.",
     type: "profile",
+    images: [{ url: "/images/og-image.jpg", width: 1200, height: 630 }],
   },
   alternates: { canonical: "/about" },
 };

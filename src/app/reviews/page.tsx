@@ -8,6 +8,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Отзывы клиентов",
     description: "Отзывы клиентов о работе Ruslan WEB. 50+ проектов.",
+    images: [{ url: "/images/og-image.jpg", width: 1200, height: 630 }],
   },
   alternates: { canonical: "/reviews" },
 };

@@ -10,6 +10,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Портфолио проектов",
     description: "Сайты, интернет-магазины, LMS-платформы. Проекты Ruslan WEB.",
+    images: [{ url: "/images/og-image.jpg", width: 1200, height: 630 }],
   },
   alternates: { canonical: "/portfolio" },
 };

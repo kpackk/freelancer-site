@@ -9,6 +9,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Блог IT-фрилансера",
     description: "Статьи о веб-разработке, автоматизации и IT от фрилансера.",
+    images: [{ url: "/images/og-image.jpg", width: 1200, height: 630 }],
   },
   alternates: { canonical: "/blog" },
 };

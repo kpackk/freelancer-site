@@ -13,7 +13,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title,
     description,
-    openGraph: { title, description },
+    openGraph: { title, description, images: [{ url: `/images/portfolio-${slug}-website.jpg`, width: 1200, height: 630 }] },
     alternates: { canonical: `/portfolio/${slug}` },
   };
 }

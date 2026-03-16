@@ -9,6 +9,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Услуги IT-фрилансера",
     description: "8 направлений: Telegram-боты, сайты, парсинг, WordPress, ИИ, SEO. От 4 000 ₽.",
+    images: [{ url: "/images/og-image.jpg", width: 1200, height: 630 }],
   },
   alternates: { canonical: "/services" },
 };
