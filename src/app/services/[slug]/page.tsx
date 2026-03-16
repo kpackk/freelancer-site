@@ -17,6 +17,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title,
     description,
     openGraph: { title, description, images: [{ url: "/images/og-image.jpg", width: 1200, height: 630 }] },
+    twitter: { title, description, card: "summary_large_image", images: ["/images/og-image.jpg"] },
     alternates: { canonical: `/services/${slug}` },
   };
 }
@@ -40,6 +41,16 @@ export default async function ServicePage({ params }: Props) {
       </section>
     );
   }
+
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Главная", item: BASE_URL },
+      { "@type": "ListItem", position: 2, name: "Услуги", item: `${BASE_URL}/services` },
+      { "@type": "ListItem", position: 3, name: service.title },
+    ],
+  };
 
   const serviceSchema = {
     "@context": "https://schema.org",
@@ -67,6 +78,10 @@ export default async function ServicePage({ params }: Props) {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
       <Link
         href="/services"

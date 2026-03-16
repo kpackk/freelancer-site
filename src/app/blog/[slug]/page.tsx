@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { getAllPosts, getPostBySlug } from "@/lib/mdx";
 
@@ -16,6 +17,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title,
     description,
     openGraph: { title, description, type: "article", images: [{ url: "/images/og-image.jpg", width: 1200, height: 630 }] },
+    twitter: { title, description, card: "summary_large_image", images: ["/images/og-image.jpg"] },
     alternates: { canonical: `/blog/${slug}` },
   };
 }
@@ -29,15 +31,18 @@ export default async function BlogPostPage({ params }: Props) {
   const post = getPostBySlug(slug);
 
   if (!post) {
-    return (
-      <section className="mx-auto max-w-3xl px-6 py-20 text-center">
-        <h1 className="text-2xl font-bold">Статья не найдена</h1>
-        <Link href="/blog" className="mt-4 inline-block text-sm underline">
-          &larr; Вернуться к блогу
-        </Link>
-      </section>
-    );
+    notFound();
   }
+
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Главная", item: BASE_URL },
+      { "@type": "ListItem", position: 2, name: "Блог", item: `${BASE_URL}/blog` },
+      { "@type": "ListItem", position: 3, name: post.title },
+    ],
+  };
 
   const blogPostingSchema = {
     "@context": "https://schema.org",
@@ -60,6 +65,10 @@ export default async function BlogPostPage({ params }: Props) {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(blogPostingSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
       <Link
         href="/blog"
