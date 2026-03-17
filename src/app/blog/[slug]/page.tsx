@@ -4,6 +4,8 @@ import { notFound } from "next/navigation";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { getAllPosts, getPostBySlug } from "@/lib/mdx";
 
+export const revalidate = 86400; // ISR: revalidate every 24h (matches homepage)
+
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://ruslanfreelance.ru";
 
 type Props = { params: Promise<{ slug: string }> };
