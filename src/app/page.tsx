@@ -3,6 +3,26 @@ import Link from "next/link";
 import services from "@/../content/data/services.json";
 import portfolio from "@/../content/data/portfolio.json";
 
+export const revalidate = 86400;
+
+const homeReviews = [
+  {
+    name: "Владелец espaniero.ru",
+    text: "Отличная работа! Сайт был готов в срок и полностью соответствовал ТЗ. LMS-платформа работает стабильно, ученики довольны интерфейсом.",
+    project: "espaniero.ru",
+  },
+  {
+    name: "Владелица ASSORO",
+    text: "Профессиональный подход — от брифа до запуска. Магазин работает быстро, мобильная версия идеальна. Рекомендую.",
+    project: "assoro.ru",
+  },
+  {
+    name: "Директор Danila-Master",
+    text: "Быстро разобрался в задаче, реализовал сложный каталог с SEO-оптимизацией. Позиции в Google выросли в первый месяц.",
+    project: "danila-master.ru",
+  },
+];
+
 const faqItems = [
   {
     question: "Сколько стоит разработка?",
@@ -179,8 +199,41 @@ export default function Home() {
         </div>
       </section>
 
-      {/* FAQ */}
+      {/* Reviews */}
       <section className="border-t border-zinc-200 bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-900/50">
+        <div className="mx-auto max-w-5xl px-6 py-20">
+          <h2 className="text-center text-2xl font-bold">Отзывы клиентов</h2>
+          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {homeReviews.map((r) => (
+              <blockquote
+                key={r.name}
+                className="rounded-xl border border-zinc-200 bg-white p-6 dark:border-zinc-800 dark:bg-zinc-950"
+              >
+                <p className="text-sm text-zinc-600 dark:text-zinc-400">
+                  &ldquo;{r.text}&rdquo;
+                </p>
+                <div className="mt-4">
+                  <cite className="block text-sm font-medium not-italic">
+                    {r.name}
+                  </cite>
+                  <span className="text-xs text-zinc-500">{r.project}</span>
+                </div>
+              </blockquote>
+            ))}
+          </div>
+          <div className="mt-10 text-center">
+            <Link
+              href="/reviews"
+              className="text-sm font-medium text-zinc-900 underline underline-offset-4 hover:text-zinc-600 dark:text-zinc-100 dark:hover:text-zinc-400"
+            >
+              Все отзывы &rarr;
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section className="border-t border-zinc-200 dark:border-zinc-800">
         <div className="mx-auto max-w-3xl px-6 py-20">
           <h2 className="text-center text-2xl font-bold">Частые вопросы</h2>
           <dl className="mt-12 space-y-8">
@@ -193,6 +246,17 @@ export default function Home() {
               </div>
             ))}
           </dl>
+          <div className="mt-10 text-center">
+            <p className="text-zinc-600 dark:text-zinc-400">
+              Остались вопросы?
+            </p>
+            <Link
+              href="/contact"
+              className="mt-4 inline-block rounded-full bg-zinc-900 px-8 py-3 text-sm font-medium text-white transition-colors hover:bg-zinc-700 dark:bg-white dark:text-zinc-900 dark:hover:bg-zinc-200"
+            >
+              Обсудить проект &rarr;
+            </Link>
+          </div>
         </div>
       </section>
 
