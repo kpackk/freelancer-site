@@ -1,8 +1,8 @@
 "use client";
 
 import { useEffect } from "react";
+import { trackGoal } from "@/lib/analytics";
 
-// TODO: replace with real counter ID after registering in Yandex.Metrika (CMPA-42)
 const YM_ID = process.env.NEXT_PUBLIC_YM_ID || "";
 
 export default function YandexMetrika() {
@@ -22,6 +22,22 @@ export default function YandexMetrika() {
       });
     `;
     document.head.appendChild(script);
+  }, []);
+
+  // Scroll-to-bottom goal: fires once per page load when user scrolls near bottom
+  useEffect(() => {
+    if (!YM_ID) return;
+    let fired = false;
+    function onScroll() {
+      if (fired) return;
+      const scrolled = window.scrollY + window.innerHeight;
+      if (scrolled >= document.documentElement.scrollHeight - 100) {
+        fired = true;
+        trackGoal("scroll_bottom");
+      }
+    }
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   return null;

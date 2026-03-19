@@ -15,9 +15,36 @@ export const metadata: Metadata = {
   alternates: { canonical: "/portfolio" },
 };
 
+const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://ruslanfreelance.ru";
+
+const itemListSchema = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: "Портфолио проектов — Ruslan WEB",
+  description: "Выполненные проекты: сайты, интернет-магазины, LMS-платформы.",
+  numberOfItems: portfolio.length,
+  itemListElement: portfolio.map((p, i) => ({
+    "@type": "ListItem",
+    position: i + 1,
+    item: {
+      "@type": "CreativeWork",
+      name: p.title,
+      url: `${BASE_URL}/portfolio/${p.slug}`,
+      description: p.description,
+      image: `${BASE_URL}/images/portfolio-${p.slug}-website.jpg`,
+      creator: { "@id": `${BASE_URL}/#person` },
+      keywords: p.technologies.join(", "),
+    },
+  })),
+};
+
 export default function PortfolioPage() {
   return (
     <section className="mx-auto max-w-5xl px-6 py-20">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListSchema) }}
+      />
       <h1 className="text-3xl font-bold tracking-tight">Портфолио</h1>
       <p className="mt-4 text-zinc-600 dark:text-zinc-400">
         Избранные проекты — сайты, интернет-магазины и веб-платформы.

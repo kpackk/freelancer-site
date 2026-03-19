@@ -142,5 +142,59 @@
       "Отчёт с приоритетными рекомендациями"
     ],
     "order": 8
+  },
+  {
+    "slug": "vk-bot",
+    "title": "Разработка ботов для ВКонтакте",
+    "shortDescription": "Боты для сообществ VK: автоответы, рассылки, интеграция с CRM, обработка заказов через VK API.",
+    "icon": "message-square",
+    "price": { "from": 4000, "currency": "RUB" },
+    "deliveryDays": 7,
+    "technologies": ["Python", "VK API", "PostgreSQL", "Redis"],
+    "features": [
+      "Автоматизация сообщений сообщества VK",
+      "Рассылки и воронки продаж через VK",
+      "Интеграция с CRM и внешними сервисами",
+      "Обработка заказов и уведомления",
+      "Чат-бот с кнопками и каруселями",
+      "Деплой на VPS с автозапуском"
+    ],
+    "order": 9
+  },
+  {
+    "slug": "whatsapp-bot",
+    "title": "Чат-бот для WhatsApp Business",
+    "shortDescription": "Автоматизация продаж и поддержки через WhatsApp: уведомления, воронки, интеграция с CRM и каталогом.",
+    "icon": "smartphone",
+    "price": { "from": 6000, "currency": "RUB" },
+    "deliveryDays": 10,
+    "technologies": ["Python", "WhatsApp Business API", "FastAPI", "PostgreSQL"],
+    "features": [
+      "Автоматические ответы и FAQ",
+      "Уведомления о заказах и доставке",
+      "Воронки продаж с кнопками и списками",
+      "Интеграция с CRM и каталогом товаров",
+      "Шаблонные сообщения (HSM) для рассылок",
+      "Передача диалога оператору"
+    ],
+    "order": 10
+  },
+  {
+    "slug": "woocommerce",
+    "title": "Интеграция и доработка WooCommerce",
+    "shortDescription": "Настройка магазина на WooCommerce: платёжные системы, доставка, Telegram-уведомления, кастомные плагины.",
+    "icon": "shopping-cart",
+    "price": { "from": 4000, "currency": "RUB" },
+    "deliveryDays": 7,
+    "technologies": ["PHP", "WooCommerce", "REST API", "WordPress", "JavaScript"],
+    "features": [
+      "Настройка и кастомизация WooCommerce",
+      "Интеграция платёжных систем (ЮKassa, Робокасса, Stripe)",
+      "Подключение служб доставки (СДЭК, Boxberry, Почта)",
+      "Telegram-уведомления о заказах",
+      "Кастомные плагины под бизнес-логику",
+      "REST API для мобильных приложений"
+    ],
+    "order": 11
   }
 ]

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import type { FormEvent } from "react";
+import { trackGoal } from "@/lib/analytics";
 
 interface FormData {
   name: string;
@@ -49,6 +50,7 @@ export default function ContactForm() {
       }
 
       setStatus("success");
+      trackGoal("contact_form_submit");
     } catch {
       setErrorMessage("Не удалось отправить. Проверьте подключение к интернету.");
       setStatus("error");

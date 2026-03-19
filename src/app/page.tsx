@@ -120,6 +120,7 @@ export default function Home() {
               <Link
                 key={service.slug}
                 href={`/services/${service.slug}`}
+                prefetch={false}
                 className="group rounded-xl border border-zinc-200 bg-white p-6 transition-colors hover:border-zinc-400 dark:border-zinc-800 dark:bg-zinc-950 dark:hover:border-zinc-600"
               >
                 {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -128,6 +129,8 @@ export default function Home() {
                   alt={`Иконка услуги: ${service.title}`}
                   width={32}
                   height={32}
+                  loading="lazy"
+                  decoding="async"
                   className="mb-3 text-zinc-700 dark:text-zinc-300"
                 />
                 <h3 className="text-lg font-semibold group-hover:underline">

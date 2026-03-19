@@ -9,6 +9,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const staticPages = [
     { path: "", priority: 1, changeFrequency: "monthly" as const },
     { path: "/services", priority: 0.9, changeFrequency: "monthly" as const },
+    { path: "/prices", priority: 0.9, changeFrequency: "monthly" as const },
     { path: "/portfolio", priority: 0.8, changeFrequency: "monthly" as const },
     { path: "/blog", priority: 0.8, changeFrequency: "weekly" as const },
     { path: "/about", priority: 0.7, changeFrequency: "monthly" as const },
@@ -28,11 +29,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
     changeFrequency: "monthly" as const,
   }));
 
-  const blogPosts = getAllPosts().map((post) => ({
-    path: `/blog/${post.slug}`,
-    priority: 0.6,
-    changeFrequency: "monthly" as const,
-  }));
+  // Exclude slugs that have nginx 301 redirects (canonical URL already in sitemap)
+  const redirectedSlugs = new Set(["verstka-po-maketu-figma-pixel-perfect"]);
+
+  const blogPosts = getAllPosts()
+    .filter((post) => !redirectedSlugs.has(post.slug))
+    .map((post) => ({
+      path: `/blog/${post.slug}`,
+      priority: 0.6,
+      changeFrequency: "monthly" as const,
+    }));
 
   return [...staticPages, ...servicePages, ...portfolioPages, ...blogPosts].map(
     (page) => ({

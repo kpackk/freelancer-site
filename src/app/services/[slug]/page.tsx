@@ -52,6 +52,21 @@ export default async function ServicePage({ params }: Props) {
     ],
   };
 
+  const faqSchema = content.faq?.length
+    ? {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: content.faq.map((item) => ({
+          "@type": "Question",
+          name: item.question,
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: item.answer,
+          },
+        })),
+      }
+    : null;
+
   const serviceSchema = {
     "@context": "https://schema.org",
     "@type": "Service",
@@ -83,6 +98,12 @@ export default async function ServicePage({ params }: Props) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
+      {faqSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+        />
+      )}
       <Link
         href="/services"
         className="text-sm text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-100"
@@ -93,10 +114,9 @@ export default async function ServicePage({ params }: Props) {
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src={`/icons/${slug}.svg`}
-        alt=""
+        alt={`Иконка услуги: ${service.title}`}
         width={48}
         height={48}
-        aria-hidden="true"
         className="mt-6"
       />
       <h1 className="mt-4 text-3xl font-bold tracking-tight">{content.h1}</h1>
@@ -126,14 +146,14 @@ export default async function ServicePage({ params }: Props) {
       {/* Features */}
       <div className="mt-10">
         <h2 className="text-xl font-semibold">Что входит</h2>
-        <ul className="mt-4 space-y-2">
+        <ul className="mt-4 space-y-3">
           {content.features.map((feature, i) => (
             <li
               key={i}
               className="flex items-start gap-2 text-zinc-700 dark:text-zinc-300"
             >
-              <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-zinc-400" />
-              {feature}
+              <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-zinc-400" />
+              <h3 className="text-base font-medium">{feature}</h3>
             </li>
           ))}
         </ul>
@@ -156,6 +176,44 @@ export default async function ServicePage({ params }: Props) {
           ))}
         </ul>
       </div>
+
+      {/* FAQ */}
+      {content.faq && content.faq.length > 0 && (
+        <div className="mt-10">
+          <h2 className="text-xl font-semibold">Частые вопросы</h2>
+          <dl className="mt-4 space-y-4">
+            {content.faq.map((item, i) => (
+              <div key={i}>
+                <dt className="font-medium text-zinc-900 dark:text-zinc-100">
+                  {item.question}
+                </dt>
+                <dd className="mt-1 text-zinc-600 dark:text-zinc-400">
+                  {item.answer}
+                </dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+      )}
+
+      {/* Related Posts */}
+      {content.relatedPosts && content.relatedPosts.length > 0 && (
+        <div className='mt-10 border-t border-zinc-200 dark:border-zinc-800 pt-8'>
+          <h2 className='text-lg font-semibold'>Читайте по теме</h2>
+          <ul className='mt-3 space-y-2'>
+            {content.relatedPosts.map((post, i) => (
+              <li key={i}>
+                <Link
+                  href={post.href}
+                  className='text-zinc-700 hover:text-zinc-900 dark:text-zinc-300 dark:hover:text-zinc-100 underline underline-offset-4 text-sm'
+                >
+                  {post.title}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
 
       {/* CTA */}
       <div className="mt-10 text-center">

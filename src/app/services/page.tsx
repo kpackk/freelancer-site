@@ -33,10 +33,11 @@ export default function ServicesPage() {
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={`/icons/${s.slug}.svg`}
-              alt=""
+              alt={`Иконка услуги: ${s.title}`}
               width={36}
               height={36}
-              aria-hidden="true"
+              loading="lazy"
+              decoding="async"
               className="mb-3"
             />
             <h2 className="text-lg font-semibold group-hover:underline">
