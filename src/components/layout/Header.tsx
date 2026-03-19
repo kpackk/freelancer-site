@@ -61,10 +61,10 @@ export default function Header() {
       {mobileOpen && (
         <ul className="border-t border-zinc-200 bg-white px-6 py-4 dark:border-zinc-800 dark:bg-zinc-950 md:hidden">
           {navLinks.map((link) => (
-            <li key={link.href} className="py-2">
+            <li key={link.href}>
               <Link
                 href={link.href}
-                className="text-sm font-medium text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100"
+                className="block py-3 text-sm font-medium text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100"
                 onClick={() => setMobileOpen(false)}
               >
                 {link.label}

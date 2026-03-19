@@ -5,16 +5,18 @@ import Footer from "@/components/layout/Footer";
 import JsonLd from "@/components/JsonLd";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
 import YandexMetrika from "@/components/YandexMetrika";
+import ServerAnalytics from "@/components/ServerAnalytics";
+import MobileCTA from "@/components/MobileCTA";
 import "./globals.css";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
-  subsets: ["latin"],
+  subsets: ["latin", "cyrillic"],
 });
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
-  subsets: ["latin"],
+  subsets: ["latin", "cyrillic"],
 });
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://ruslanfreelance.ru";
@@ -71,6 +73,7 @@ export default function RootLayout({
       >
         <GoogleAnalytics />
         <YandexMetrika />
+        <ServerAnalytics />
         {process.env.NEXT_PUBLIC_YM_ID && (
           <noscript>
             <div>
@@ -85,8 +88,9 @@ export default function RootLayout({
         )}
         <JsonLd />
         <Header />
-        <main className="min-h-[calc(100vh-8rem)]">{children}</main>
+        <main className="min-h-[calc(100vh-8rem)] pb-16 md:pb-0">{children}</main>
         <Footer />
+        <MobileCTA />
       </body>
     </html>
   );

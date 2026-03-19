@@ -80,16 +80,16 @@ export default function Home() {
               Full-stack фрилансер. 5+ лет опыта, 50+ проектов. Работаю с малым
               бизнесом и стартапами — фиксированные сроки, NDA по запросу.
             </p>
-            <div className="mt-10 flex justify-center gap-4 md:justify-start">
+            <div className="mt-10 flex flex-col justify-center gap-3 sm:flex-row md:justify-start">
               <Link
                 href="/contact"
-                className="rounded-full bg-zinc-900 px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-zinc-700 dark:bg-white dark:text-zinc-900 dark:hover:bg-zinc-200"
+                className="rounded-full bg-zinc-900 px-8 py-3.5 text-center text-base font-semibold text-white shadow-lg transition-all hover:bg-zinc-700 hover:shadow-xl dark:bg-white dark:text-zinc-900 dark:hover:bg-zinc-200"
               >
                 Обсудить проект
               </Link>
               <Link
                 href="/portfolio"
-                className="rounded-full border border-zinc-300 px-6 py-3 text-sm font-medium transition-colors hover:bg-zinc-50 dark:border-zinc-700 dark:hover:bg-zinc-900"
+                className="rounded-full border border-zinc-300 px-8 py-3.5 text-center text-base font-medium transition-colors hover:bg-zinc-50 dark:border-zinc-700 dark:hover:bg-zinc-900"
               >
                 Смотреть портфолио
               </Link>
@@ -125,10 +125,9 @@ export default function Home() {
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={`/icons/${service.slug}.svg`}
-                  alt=""
+                  alt={`Иконка услуги: ${service.title}`}
                   width={32}
                   height={32}
-                  aria-hidden="true"
                   className="mb-3 text-zinc-700 dark:text-zinc-300"
                 />
                 <h3 className="text-lg font-semibold group-hover:underline">
