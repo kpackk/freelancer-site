@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { MDXRemote } from "next-mdx-remote/rsc";
-import { getAllPosts, getPostBySlug } from "@/lib/mdx";
+import { getAllPosts, getPostBySlug, extractFaqItems } from "@/lib/mdx";
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://ruslanfreelance.ru";
 
@@ -50,6 +50,8 @@ export default async function BlogPostPage({ params }: Props) {
     headline: post.title,
     description: post.description,
     datePublished: post.date,
+    dateModified: post.date,
+    image: `${BASE_URL}/images/og-image.jpg`,
     url: `${BASE_URL}/blog/${slug}`,
     author: { "@id": `${BASE_URL}/#person` },
     publisher: { "@id": `${BASE_URL}/#person` },
@@ -59,6 +61,20 @@ export default async function BlogPostPage({ params }: Props) {
     },
     inLanguage: "ru-RU",
   };
+
+  const faqItems = extractFaqItems(post.content);
+  const faqSchema = faqItems.length > 0 ? {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqItems.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.answer,
+      },
+    })),
+  } : null;
 
   return (
     <article className="mx-auto max-w-3xl px-6 py-20">
@@ -70,6 +86,12 @@ export default async function BlogPostPage({ params }: Props) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
+      {faqSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+        />
+      )}
       <Link
         href="/blog"
         className="text-sm text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-100"

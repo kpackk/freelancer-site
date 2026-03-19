@@ -38,3 +38,35 @@ export function getPostBySlug(slug: string): BlogPost | undefined {
   const posts = getAllPosts();
   return posts.find((p) => p.slug === slug);
 }
+
+export interface FaqItem {
+  question: string;
+  answer: string;
+}
+
+export function extractFaqItems(content: string): FaqItem[] {
+  const lines = content.split("\n");
+  const items: FaqItem[] = [];
+  let i = 0;
+
+  while (i < lines.length) {
+    const line = lines[i];
+    if (/^###\s+.+\?/.test(line)) {
+      const question = line.replace(/^###\s+/, "").trim();
+      const answerLines: string[] = [];
+      i++;
+      while (i < lines.length && !/^#{2,3}\s/.test(lines[i]) && !/^---/.test(lines[i])) {
+        answerLines.push(lines[i]);
+        i++;
+      }
+      const answer = answerLines.join(" ").replace(/\s+/g, " ").replace(/\*\*/g, "").trim();
+      if (answer) {
+        items.push({ question, answer });
+      }
+    } else {
+      i++;
+    }
+  }
+
+  return items;
+}
