@@ -9,12 +9,20 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // Site launch date — used for static pages that don't change often
   const siteLastUpdated = new Date("2026-03-11");
 
+  // Exclude slugs that have nginx 301 redirects (canonical URL already in sitemap)
+  const redirectedSlugs = new Set(["verstka-po-maketu-figma-pixel-perfect"]);
+
+  const posts = getAllPosts().filter((post) => !redirectedSlugs.has(post.slug));
+
+  // Blog listing page uses the most recent post date (posts are sorted newest-first)
+  const latestPostDate = posts[0]?.date ? new Date(posts[0].date) : siteLastUpdated;
+
   const staticPages: MetadataRoute.Sitemap = [
     { url: `${BASE_URL}`, lastModified: siteLastUpdated, priority: 1, changeFrequency: "monthly" },
     { url: `${BASE_URL}/services`, lastModified: siteLastUpdated, priority: 0.9, changeFrequency: "monthly" },
     { url: `${BASE_URL}/prices`, lastModified: siteLastUpdated, priority: 0.9, changeFrequency: "monthly" },
     { url: `${BASE_URL}/portfolio`, lastModified: siteLastUpdated, priority: 0.8, changeFrequency: "monthly" },
-    { url: `${BASE_URL}/blog`, lastModified: new Date(), priority: 0.8, changeFrequency: "weekly" },
+    { url: `${BASE_URL}/blog`, lastModified: latestPostDate, priority: 0.8, changeFrequency: "weekly" },
     { url: `${BASE_URL}/about`, lastModified: siteLastUpdated, priority: 0.7, changeFrequency: "monthly" },
     { url: `${BASE_URL}/reviews`, lastModified: siteLastUpdated, priority: 0.7, changeFrequency: "monthly" },
     { url: `${BASE_URL}/contact`, lastModified: siteLastUpdated, priority: 0.7, changeFrequency: "monthly" },
@@ -34,17 +42,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     changeFrequency: "monthly",
   }));
 
-  // Exclude slugs that have nginx 301 redirects (canonical URL already in sitemap)
-  const redirectedSlugs = new Set(["verstka-po-maketu-figma-pixel-perfect"]);
-
-  const blogPosts: MetadataRoute.Sitemap = getAllPosts()
-    .filter((post) => !redirectedSlugs.has(post.slug))
-    .map((post) => ({
-      url: `${BASE_URL}/blog/${post.slug}`,
-      lastModified: post.date ? new Date(post.date) : siteLastUpdated,
-      priority: 0.6,
-      changeFrequency: "monthly",
-    }));
+  const blogPosts: MetadataRoute.Sitemap = posts.map((post) => ({
+    url: `${BASE_URL}/blog/${post.slug}`,
+    lastModified: post.date ? new Date(post.date) : siteLastUpdated,
+    priority: 0.6,
+    changeFrequency: "monthly",
+  }));
 
   return [...staticPages, ...servicePages, ...portfolioPages, ...blogPosts];
 }
