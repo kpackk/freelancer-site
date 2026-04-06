@@ -13,6 +13,8 @@ const geistSans = Geist({
 });
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://ruslanfreelance.ru";
+const GOOGLE_SITE_VERIFICATION = process.env.GOOGLE_SITE_VERIFICATION || "";
+const YANDEX_VERIFICATION = process.env.YANDEX_VERIFICATION || "";
 
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
@@ -51,6 +53,10 @@ export const metadata: Metadata = {
   },
   alternates: {
     canonical: "/",
+  },
+  verification: {
+    google: GOOGLE_SITE_VERIFICATION || undefined,
+    yandex: YANDEX_VERIFICATION || undefined,
   },
 };
 
