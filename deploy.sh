@@ -1,14 +1,19 @@
 #!/bin/bash
 set -e
 
-PROJECT_DIR="/root/freelancer-site"
-APP_NAME="freelancer-site"
-BUILD_DIR=".next_build"
+PROJECT_DIR="${PROJECT_DIR:-/root/freelancer-site}"
+APP_NAME="${APP_NAME:-freelancer-site}"
+BUILD_DIR="${BUILD_DIR:-.next_build}"
 
 echo "=== Zero-downtime deploy: freelancer-site ==="
 echo "$(date): Starting deploy..."
 
 cd "$PROJECT_DIR"
+
+if [ ! -f "ecosystem.config.js" ]; then
+  echo "ERROR: ecosystem.config.js not found in $PROJECT_DIR"
+  exit 1
+fi
 
 # 1. Install deps if needed
 if [ ! -d "node_modules" ] || [ "package.json" -nt "node_modules/.package-lock.json" ]; then

@@ -10,6 +10,21 @@ const YM_ID = process.env.NEXT_PUBLIC_YM_ID
   : 0;
 const GA_ID = process.env.NEXT_PUBLIC_GA_ID || "";
 
+/** Send a Yandex.Metrika SPA hit + GA4 page_view on client-side route changes */
+export function trackPageView(path: string) {
+  if (typeof window === "undefined") return;
+  if (YM_ID && window.ym) {
+    window.ym(YM_ID, "hit", path);
+  }
+  if (GA_ID && window.gtag) {
+    window.gtag("event", "page_view", {
+      page_path: path,
+      page_location: window.location.href,
+      page_title: document.title,
+    });
+  }
+}
+
 /** Send a Yandex.Metrika reachGoal + GA4 event */
 export function trackGoal(goal: string, params?: Record<string, string>) {
   if (typeof window === "undefined") return;

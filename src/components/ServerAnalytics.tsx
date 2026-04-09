@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect } from "react";
+import { usePathname } from "next/navigation";
+import { trackGoal } from "@/lib/analytics";
 
 function sendEvent(
   event: string,
@@ -21,10 +23,13 @@ function sendEvent(
 }
 
 export default function ServerAnalytics() {
-  // Page view
+  const pathname = usePathname();
+
+  // Page view — re-fire on client-side route changes
   useEffect(() => {
-    sendEvent("page_view", window.location.pathname);
-  }, []);
+    if (!pathname) return;
+    sendEvent("page_view", pathname);
+  }, [pathname]);
 
   // CTA click tracking via data attributes
   useEffect(() => {
@@ -57,8 +62,29 @@ export default function ServerAnalytics() {
     return () => document.removeEventListener("click", onClick);
   }, []);
 
-  // Scroll depth tracking (50% and 100%)
+  // Mirror key footer interactions into Yandex/GA goals without converting Footer to a client component
   useEffect(() => {
+    function onClick(e: MouseEvent) {
+      const anchor = (e.target as HTMLElement).closest<HTMLAnchorElement>("footer a[href]");
+      if (!anchor) return;
+      const href = anchor.getAttribute("href") || "";
+
+      if (href === "/services") {
+        trackGoal("services_nav_click", { placement: "footer" });
+      } else if (href.startsWith("https://t.me/")) {
+        trackGoal("contact_telegram", { placement: "footer" });
+      } else if (href.startsWith("mailto:")) {
+        trackGoal("contact_email", { placement: "footer" });
+      }
+    }
+
+    document.addEventListener("click", onClick, { passive: true });
+    return () => document.removeEventListener("click", onClick);
+  }, []);
+
+  // Scroll depth tracking (50% and 100%) — reset on route change
+  useEffect(() => {
+    if (!pathname) return;
     let fired50 = false;
     let fired100 = false;
     function onScroll() {
@@ -68,16 +94,17 @@ export default function ServerAnalytics() {
       const pct = total > 0 ? scrolled / total : 0;
       if (!fired50 && pct >= 0.5) {
         fired50 = true;
-        sendEvent("scroll_depth", window.location.pathname, { depth: "50" });
+        sendEvent("scroll_depth", pathname, { depth: "50" });
       }
       if (!fired100 && pct >= 0.95) {
         fired100 = true;
-        sendEvent("scroll_depth", window.location.pathname, { depth: "100" });
+        sendEvent("scroll_depth", pathname, { depth: "100" });
       }
     }
     window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
     return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  }, [pathname]);
 
   return null;
 }

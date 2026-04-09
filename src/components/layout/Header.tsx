@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import { trackGoal } from "@/lib/analytics";
 
 const navLinks = [
   { href: "/", label: "Главная" },
@@ -15,6 +16,12 @@ const navLinks = [
 
 export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
+
+  function handleNavClick(href: string) {
+    if (href === "/services") {
+      trackGoal("services_nav_click", { placement: "header" });
+    }
+  }
 
   return (
     <header className="sticky top-0 z-50 border-b border-zinc-200 bg-white/80 backdrop-blur dark:border-zinc-800 dark:bg-zinc-950/80">
@@ -30,6 +37,7 @@ export default function Header() {
               <Link
                 href={link.href}
                 className="text-sm font-medium text-zinc-600 transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100"
+                onClick={() => handleNavClick(link.href)}
               >
                 {link.label}
               </Link>
@@ -66,7 +74,10 @@ export default function Header() {
               <Link
                 href={link.href}
                 className="block py-3 text-sm font-medium text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100"
-                onClick={() => setMobileOpen(false)}
+                onClick={() => {
+                  handleNavClick(link.href);
+                  setMobileOpen(false);
+                }}
               >
                 {link.label}
               </Link>

@@ -1,11 +1,16 @@
 "use client";
 
-import { useEffect } from "react";
-import { trackGoal } from "@/lib/analytics";
+import { useEffect, useRef } from "react";
+import { usePathname } from "next/navigation";
+import { trackGoal, trackPageView } from "@/lib/analytics";
 
 const YM_ID = process.env.NEXT_PUBLIC_YM_ID || "";
+const GA_ID = process.env.NEXT_PUBLIC_GA_ID || "";
 
 export default function YandexMetrika() {
+  const pathname = usePathname();
+  const didTrackInitialPath = useRef(false);
+
   useEffect(() => {
     if (!YM_ID) return;
 
@@ -24,21 +29,36 @@ export default function YandexMetrika() {
     document.head.appendChild(script);
   }, []);
 
-  // Scroll-to-bottom goal: fires once per page load when user scrolls near bottom
   useEffect(() => {
-    if (!YM_ID) return;
+    if ((!YM_ID && !GA_ID) || !pathname) return;
+
+    if (!didTrackInitialPath.current) {
+      didTrackInitialPath.current = true;
+    } else {
+      trackPageView(pathname);
+    }
+
+    if (pathname === "/services" || pathname.startsWith("/services/")) {
+      trackGoal("services_page_view", { path: pathname });
+    }
+  }, [pathname]);
+
+  // Scroll-to-bottom goal: resets on each client-side route change
+  useEffect(() => {
+    if (!YM_ID || !pathname) return;
     let fired = false;
     function onScroll() {
       if (fired) return;
       const scrolled = window.scrollY + window.innerHeight;
       if (scrolled >= document.documentElement.scrollHeight - 100) {
         fired = true;
-        trackGoal("scroll_bottom");
+        trackGoal("scroll_bottom", { path: pathname });
       }
     }
     window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
     return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  }, [pathname]);
 
   return null;
 }
